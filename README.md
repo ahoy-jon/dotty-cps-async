@@ -6,7 +6,7 @@ This is the implementation of async/await transformation for Dotty (next version
 
 Example:
 
-```
+```scala
    async[F:AsyncMonad]  {
         val connection = await(receiveConnection)
         try 
@@ -22,7 +22,7 @@ Example:
 
 Will be transformed to something like:
 
-```
+```scala
 m.flatMap(openConnection())(a => {
   val connection: Connection[F] = a
   m.withAction({
